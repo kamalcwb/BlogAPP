@@ -15,6 +15,7 @@ const Categoria = mongoose.model('categorias')
 const usuarios = require('./routes/usuario')
 const passport = require('passport')
 require('./config/auth')(passport)
+const db = require("./config/db")
 //Configurações
 //Sessão
 app.use(session({
@@ -42,7 +43,7 @@ app.engine('handlebars', handlebars({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 //Mongoose
 mongoose.Promise = global.Promise
-mongoose.connect('mongodb://localhost/blogapp', { useNewUrlParser: true }).then(() => { console.log('Conectado com sucesso') }).catch((e) => { console.log(`Ocorreu o erro: ${e}`) })
+mongoose.connect(db.mongoURI, { useNewUrlParser: true }).then(() => { console.log('Conectado com sucesso') }).catch((e) => { console.log(`Ocorreu o erro: ${e}`) })
 //Public
 app.use(express.static(path.join(__dirname, 'public')))
 //Rotas
