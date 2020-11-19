@@ -1,0 +1,26 @@
+const mongoose = require('mongoose')
+const router = require('../routes/admin')
+const Schema = mongoose.Schema
+
+const Usuario = new Schema ({
+    nome: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    admin: {
+        type: Number,
+        default: 0
+    },
+    senha: {
+        type: String,
+        required: true
+    }
+})
+
+
+
+mongoose.model('usuarios', Usuario)
